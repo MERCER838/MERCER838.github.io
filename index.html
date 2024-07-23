@@ -5,27 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Shopping Site</title>
 
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1879090622518396');
+    fbq('track', 'PageView');
+    fbq('track', 'AddToCart');
+    fbq('track', 'InitiateCheckout');
+    fbq('track', 'Purchase', {value: 30, currency: 'USD'});
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
         }
         .product, .checkout, .thankyou {
             border: 1px solid #ccc;
             padding: 16px;
-            margin: 8px 0;
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
+            margin: 8px;
         }
     </style>
 </head>
@@ -37,37 +45,65 @@
     <main>
         <div class="product">
             <h2>Product ABC</h2>
-            <p>Price: $25.00</p>
             <button onclick="addToCart()">Add to Cart</button>
         </div>
         <div class="checkout" style="display: none;">
             <h2>Checkout</h2>
-            <p>Total: $50.00 (2 items)</p>
             <button onclick="initiateCheckout()">Initiate Checkout</button>
         </div>
         <div class="thankyou" style="display: none;">
             <h2>Thank You for Your Purchase!</h2>
-            <p>Your order has been placed.</p>
             <button onclick="completePurchase()">Complete Purchase</button>
         </div>
     </main>
 
     <script>
+        // 模拟添加到购物车
         function addToCart() {
+            fbq('track', 'AddToCart', {
+                content_ids: ['ABC123', 'XYZ789'],
+                content_type: 'product',
+                contents: [
+                    {'id': 'ABC123', 'quantity': 1},
+                    {'id': 'XYZ789', 'quantity': 1}
+                ],
+                currency: 'USD',
+                value: 50.00
+            });
             console.log('Product Added to Cart');
-            // 这里可以添加 AddToCart 事件追踪代码
             document.querySelector('.checkout').style.display = 'block';
         }
 
+        // 模拟开始结账
         function initiateCheckout() {
+            fbq('track', 'InitiateCheckout', {
+                content_ids: ['ABC123', 'XYZ789'],
+                contents: [
+                    {'id': 'ABC123', 'quantity': 1},
+                    {'id': 'XYZ789', 'quantity': 1}
+                ],
+                currency: 'USD',
+                num_items: 2,
+                value: 50.00
+            });
             console.log('Checkout Initiated');
-            // 这里可以添加 InitiateCheckout 事件追踪代码
             document.querySelector('.thankyou').style.display = 'block';
         }
 
+        // 模拟完成购买
         function completePurchase() {
+            fbq('track', 'Purchase', {
+                content_ids: ['ABC123', 'XYZ789'],
+                content_type: 'product',
+                contents: [
+                    {'id': 'ABC123', 'quantity': 1},
+                    {'id': 'XYZ789', 'quantity': 1}
+                ],
+                currency: 'USD',
+                num_items: 2,
+                value: 50.00
+            });
             console.log('Purchase Completed');
-            // 这里可以添加 Purchase 事件追踪代码
             alert('Thank you for your purchase!');
         }
     </script>
