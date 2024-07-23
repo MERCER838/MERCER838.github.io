@@ -3,40 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Test Website</title>
-    
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1879090622518396');
-    fbq('track', 'PageView');
-    fbq('track', 'lead');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1879090622518396&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+    <title>Simple Shopping Site</title>
 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .product, .checkout, .thankyou {
+            border: 1px solid #ccc;
+            padding: 16px;
+            margin: 8px 0;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>hwyhywhyw</h1>
+        <h1>Simple Shopping Site</h1>
     </header>
-    
+
     <main>
-        <p>hyw123.</p>
-        <p>123hyw.</p>
+        <div class="product">
+            <h2>Product ABC</h2>
+            <p>Price: $25.00</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="checkout" style="display: none;">
+            <h2>Checkout</h2>
+            <p>Total: $50.00 (2 items)</p>
+            <button onclick="initiateCheckout()">Initiate Checkout</button>
+        </div>
+        <div class="thankyou" style="display: none;">
+            <h2>Thank You for Your Purchase!</h2>
+            <p>Your order has been placed.</p>
+            <button onclick="completePurchase()">Complete Purchase</button>
+        </div>
     </main>
-    
-    <footer>
-        <p>&copy; 2023 My Test Website. All rights reserved.</p>
-    </footer>
+
+    <script>
+        function addToCart() {
+            console.log('Product Added to Cart');
+            // 这里可以添加 AddToCart 事件追踪代码
+            document.querySelector('.checkout').style.display = 'block';
+        }
+
+        function initiateCheckout() {
+            console.log('Checkout Initiated');
+            // 这里可以添加 InitiateCheckout 事件追踪代码
+            document.querySelector('.thankyou').style.display = 'block';
+        }
+
+        function completePurchase() {
+            console.log('Purchase Completed');
+            // 这里可以添加 Purchase 事件追踪代码
+            alert('Thank you for your purchase!');
+        }
+    </script>
 </body>
 </html>
